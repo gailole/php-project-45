@@ -1,0 +1,36 @@
+#!/usr/bin/env php
+<?php
+require_once __DIR__ . '/../vendor/autoload.php';
+
+use function cli\line;
+use function cli\prompt;
+use function PhpProject45\Cli\sayName;
+
+print_r("Welcome to the Brain Games!\n");
+$name = sayName();
+
+function game($name)
+{
+    print_r("Answer \"yes\" if the number is even, otherwise answer \"no\".\n");
+    $count = 0;
+    while ($count < 3) {
+        $num = rand(1, 20);
+        print_r("Question: {$num}\n");
+        $answer = prompt('Your answer');
+        if (($num % 2 === 0 && $answer === 'yes') || ($num % 2 !== 0 && $answer === 'no')) {
+            print_r("Correct!\n");
+            $count++;
+        } else {
+            if ($num % 2 === 0) {
+                print_r("'{$answer}' is wrong answer ;(. Correct answer was 'yes'.\nLet's try again, {$name}!\n");
+                $count = 0;
+                } else {
+                    print_r("'{$answer}' is wrong answer ;(. Correct answer was 'no'.\nLet's try again, {$name}!\n");
+                    $count = 0;
+                    }
+	}
+    }
+}
+
+game($name);
+print_r("Congratulations, {$name}!\n");
