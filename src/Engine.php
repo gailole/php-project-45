@@ -31,3 +31,18 @@ function games_Nod($num1, $num2)
         }
     return (string) $num1;
 }
+
+function games_Progress()
+{
+    $arr = [];
+    $value = rand(1, 20);
+    $step = rand(1, 5);
+//    $hide = rand(0, 9);
+    while (count($arr) < 10) {
+        $value += $step;
+        $arr[] = $value;
+    }
+    return $arr;
+}
+
+//print_r(games_Progress());
