@@ -11,7 +11,7 @@ lint:
 	composer exec --verbose phpcs -- --standard=PSR12 src bin
 	
 brain-even:
-	./bin/brain-even
+	./src/Games/brain-even
 
 brain-calc:
-	./bin/brain-calc
+	./src/Games/brain-calc
