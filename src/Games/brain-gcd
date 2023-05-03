@@ -1,0 +1,30 @@
+#!/usr/bin/env php
+<?php
+require_once __DIR__ . '/../../vendor/autoload.php';
+
+use function PhpProject45\Cli\sayName;
+use function PhpProject45\Engine\games_Question;
+use function PhpProject45\Engine\games_Condition;
+use function PhpProject45\Engine\games_Nod;
+use function cli\prompt;
+
+$name = sayName();//определяем имя игрока
+$question = "Find the greatest common divisor of given numbers.\n"; // вопрос для данной игры
+
+function game($name, $question)
+{
+    games_Question($question);
+    $count = 0;
+    while ($count < 3) {
+        $num1 = rand(1, 20);
+        $num2 = rand(1, 20);
+        $trueAnswer = games_Nod($num1, $num2);
+        print_r("Question: $num1 $num2\n");
+        $answer = prompt('Your answer');
+        $condition = $answer === $trueAnswer; //условие при котором выигрыш
+        $count = games_Condition($condition, $count, $answer, $trueAnswer, $name);//функция осуществляющая проверку
+    }
+    print_r("Congratulations, $name!\n");
+}
+
+game($name,$question);
