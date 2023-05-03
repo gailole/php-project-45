@@ -1,0 +1,43 @@
+#!/usr/bin/env php
+<?php
+require_once __DIR__ . '/../vendor/autoload.php';
+
+use function PhpProject45\Cli\sayName;
+use function PhpProject45\Engine\games_Question;
+use function PhpProject45\Engine\games_Condition;
+use function cli\prompt;
+
+$name = sayName();//определяем имя игрока
+$question = "What is the result of the expression?\n"; // вопрос для данной игры
+function game($name, $question)
+{
+    games_Question($question);
+    $count = 0;
+    $operation = "";
+    $trueAnswer = 0;
+    while ($count < 3) {
+        $num1 = rand(1, 20);
+        $num2 = rand(1, 20);
+        switch (rand(0, 2)) {
+            case 0:
+                $trueAnswer = $num1 + $num2;
+                $operation = '+';
+                break;
+            case 1:
+                $trueAnswer = $num1 - $num2;
+                $operation = '-';
+                break;
+            case 2:
+                $trueAnswer = $num1 * $num2;
+                $operation = '*';
+                break;
+        }
+        print_r("Question: $num1 $operation $num2\n");
+        $answer = prompt('Your answer');
+        $condition = $answer === (string)$trueAnswer; //условие при котором выигрыш
+        $count = games_Condition($condition, $count, $answer, $trueAnswer, $name);//функция осуществляющая проверку
+    }
+    print_r("Congratulations, $name!\n");
+}
+
+game($name,$question);

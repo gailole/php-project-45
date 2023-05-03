@@ -2,35 +2,26 @@
 <?php
 require_once __DIR__ . '/../vendor/autoload.php';
 
-use function cli\line;
 use function cli\prompt;
 use function PhpProject45\Cli\sayName;
+use function PhpProject45\Engine\games_Question;
+use function PhpProject45\Engine\games_Condition;
 
-print_r("Welcome to the Brain Games!\n");
-$name = sayName();
-
-function game($name)
+$name = sayName();// определяем имя игрока
+$question = "Answer \"yes\" if the number is even, otherwise answer \"no\".\n"; // вопрос для данной игры
+function game($name,$question)
 {
-    print_r("Answer \"yes\" if the number is even, otherwise answer \"no\".\n");
+    games_Question($question);
     $count = 0;
     while ($count < 3) {
         $num = rand(1, 20);
+        $num % 2 === 0 ? $trueAnswer = 'yes' : $trueAnswer = 'no';
         print_r("Question: {$num}\n");
         $answer = prompt('Your answer');
-        if (($num % 2 === 0 && $answer === 'yes') || ($num % 2 !== 0 && $answer === 'no')) {
-            print_r("Correct!\n");
-            $count++;
-        } else {
-            if ($num % 2 === 0) {
-                print_r("'{$answer}' is wrong answer ;(. Correct answer was 'yes'.\nLet's try again, {$name}!\n");
-                $count = 0;
-                } else {
-                    print_r("'{$answer}' is wrong answer ;(. Correct answer was 'no'.\nLet's try again, {$name}!\n");
-                    $count = 0;
-                    }
-	}
+        $condition = ($num % 2 === 0 && $answer === 'yes') || ($num % 2 !== 0 && $answer === 'no');//условие при котором выигрыш
+        $count = games_Condition($condition, $count, $answer, $trueAnswer, $name); //функция осуществляющая проверку
     }
 }
 
-game($name);
+game($name,$question);
 print_r("Congratulations, {$name}!\n");
