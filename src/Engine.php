@@ -2,12 +2,12 @@
 
 namespace PhpProject45\Engine;
 
-function games_Question($question) //вопрос игры
+function games_Question(string $question) //вопрос игры
 {
     print_r($question);
 }
 
-function games_Condition($condition, $count, $answer, $trueAnswer, $name) //выполнение проверки
+function games_Condition(bool $condition, int $count,string $answer, string $trueAnswer, string $name) //выполнение проверки
 {
     if ($condition) {
         print_r("Correct!\n");
@@ -19,7 +19,7 @@ function games_Condition($condition, $count, $answer, $trueAnswer, $name) //вы
     return $count;
 }
 
-function games_Nod($num1, $num2)
+function games_Nod(int $num1, int $num2)
 {
     while ($num1 !== $num2) {
         if ($num1 > $num2) {
@@ -44,7 +44,7 @@ function games_Progress()
     return $arr;
 }
 
-function gamesPrime($num)
+function gamesPrime(int $num)
 {
     $true = "yes";
     for ($i = 2; $i < $num; $i++) {
