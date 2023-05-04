@@ -20,8 +20,13 @@ function game($name,$question)
         $answer = prompt('Your answer');
         $condition = ($num % 2 === 0 && $answer === 'yes') || ($num % 2 !== 0 && $answer === 'no');//условие при котором выигрыш
         $count = games_Condition($condition, $count, $answer, $trueAnswer, $name); //функция осуществляющая проверку
+        if ($count === false) {
+            break;
+        }
+        if ($count === 3) {
+            print_r("Congratulations, {$name}!\n");
+        }
     }
 }
 
 game($name,$question);
-print_r("Congratulations, {$name}!\n");

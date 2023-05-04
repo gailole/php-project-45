@@ -14,7 +14,7 @@ function games_Condition($condition, $count, $answer, $trueAnswer, $name) //вы
         $count++;
     } else {
         print_r("'$answer' is wrong answer ;(. Correct answer was '$trueAnswer'.\nLet's try again, $name!\n");
-        $count = 0;
+        return false;
     }
     return $count;
 }
