@@ -25,8 +25,13 @@ function game($name, $question)
         $answer = prompt('Your answer');
         $condition = $answer === $trueAnswer; //условие при котором выигрыш
         $count = games_Condition($condition, $count, $answer, $trueAnswer, $name);//функция осуществляющая проверку
+        if ($count === false) {
+            break;
+        }
+        if ($count === 3) {
+            print_r("Congratulations, $name!\n");
+        }
     }
-    print_r("Congratulations, $name!\n");
 }
 
 game($name, $question);
