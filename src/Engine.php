@@ -45,4 +45,14 @@ function games_Progress()
     return $arr;
 }
 
-//print_r(games_Progress());
+function gamesPrime($num)
+{
+    $true = "yes";
+    for ($i = 2; $i < $num ; $i++) {
+        if ($num % $i === 0) {
+            $true = 'no';
+            break;
+        }
+    }
+    return $true;
+}
