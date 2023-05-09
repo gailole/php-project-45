@@ -7,7 +7,7 @@ function games_Question(string $question) //вопрос игры
     print_r($question);
 }
 
-function games_Condition(bool $condition, int $count,string $answer, string $trueAnswer, string $name) //выполнение проверки
+function games_Condition(bool $condition, int $count, string $answer, string $trueAnswer, string $name) //выполнение проверки
 {
     if ($condition) {
         print_r("Correct!\n");

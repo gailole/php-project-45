@@ -24,7 +24,7 @@ function game($name, $question)
         if ($count === false) {
             break;
         }
-        if ($count === 3) {
+        if ($count == 3) {
             print_r("Congratulations, $name!\n");
         }
     }
