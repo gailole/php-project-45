@@ -1,0 +1,50 @@
+#!/usr/bin/env php
+<?php
+require_once __DIR__ . '/../../vendor/autoload.php';
+
+use function PhpProject45\Cli\sayName;
+use function cli\prompt;
+
+$name = sayName();//определяем имя игрока
+print_r("Let's play a game where I have to guess the number from the segment [a:b]\n");
+$a = (int) prompt("Set please the beginning of the segment a");
+$b = (int) prompt("Set please the end of the segment b");
+$segment = [];
+while ($a <= $b) {
+    $segment[] = $a;
+    $a += 1;
+}
+print_r("Now I will ask questions, if the statement is true, answer 'yes' else 'no'\n");
+
+function findItem($segment) {
+    $low = 0;
+    $high = count($segment)-1;
+    $mid = (int) (($low + $high) / 2);
+//    $mid = rand($low, $high);
+    $answer = prompt("This number is greater than $segment[$mid]?");
+    $buf = [];
+    if ($answer === "yes") {
+        for ($i = $mid + 1; $i <= $high; $i++) {
+            $buf[] = $segment[$i];
+        }
+    } else {
+        for ($i = 0; $i <= $mid; $i++) {
+            $buf[] = $segment[$i];
+        }
+    }
+    if (count($buf) === 2) {
+        $answer = prompt("This number is $buf[0]?");
+        if ($answer !== 'yes') {
+            $answer = prompt("This number is $buf[1]?");
+        }
+        print_r("EasyPeasy");
+    } elseif (count($buf) === 1){
+        $answer = prompt("This number is $buf[0]?");
+        if ($answer === 'yes') {
+            print_r("EasyPeasy");
+        }
+    }else {
+        findItem($buf);
+    }
+}
+findItem($segment);

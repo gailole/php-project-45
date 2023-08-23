@@ -22,3 +22,5 @@ brain-progression:
 	./src/Games/brain-progression
 brain-prime:
 	./src/Games/brain-prime
+brain-guess:
+	./src/Games/brain-guess

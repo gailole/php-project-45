@@ -4,7 +4,7 @@
     "license": "MIT",
     "autoload": {
 	"files": [
-	"src/Cli.php",
+        "src/Cli.php",
         "src/Engine.php"
 	],
         "psr-4": {
@@ -20,9 +20,10 @@
     	"bin/brain-games",
     	"src/Games/brain-even",
         "src/Games/brain-calc",
-	"src/Games/brain-gcd",
-	"src/Games/brain-progression",
-    "src/Games/brain-prime"
+	    "src/Games/brain-gcd",
+	    "src/Games/brain-progression",
+        "src/Games/brain-prime",
+        "src/Games/brain-guess"
     ],
     "require": {
         "wp-cli/php-cli-tools": "^0.11.18"
